@@ -6,7 +6,7 @@ namespace Api.Dto.Account
     {
 
         [Required]
-        [StringLength(15, MinimumLength = 3, ErrorMessage = "Last name must be at least (2) and minimum (1) character")]
+        [StringLength(15, MinimumLength = 3, ErrorMessage = "Last name must be at least (2) and maximum (15) characters")]
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -16,7 +16,7 @@ namespace Api.Dto.Account
         public string Email { get; set; }
 
         [Required]
-        [StringLength(15, MinimumLength = 3, ErrorMessage = "Password name must be at least (2) and minimum (1) character")]
+        [StringLength(15, MinimumLength = 3, ErrorMessage = "Password name must be at least (2) and maximum (15) characters")]
         public string Password { get; set; }
     }
 }

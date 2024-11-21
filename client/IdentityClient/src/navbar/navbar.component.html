@@ -1,0 +1,60 @@
+<header>
+  <nav class="navbar navbar-expanded-lg navbar-dark bg-primary">
+    <div class="container">
+      <div class="navbar-brand">
+        <h1>LOGO</h1>
+      </div>
+      <!-- <button class="navbar-toggler">
+        <span class="navbar-toggler-icon"></span>
+      </button> -->
+
+      <div class="d-flex">
+        <!-- <div class="collapse navbar-collapse"> -->
+        @if ((accountService.user$ | async) === null){
+        <ul class="navbar-nav me-auto d-flex">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/play" routerLinkActive="active"
+              >Play</a
+            >
+          </li>
+        </ul>
+        } @if ((accountService.user$ | async) === null){
+        <ul class="navbar-nav d-flex">
+          <li class="nav-item">
+            <a
+              class="btn btn-secondary mx-2"
+              routerLink="/account/register"
+              routerLinkActive="active"
+              >Create Account</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="btn btn-secondary mx-2"
+              routerLink="/account/login"
+              routerLinkActive="active"
+              >Login</a
+            >
+          </li>
+        </ul>
+        } @if (accountService.user$ | async; as user){
+        <div class="d-flex align-items-center">
+          <a href="" class="h3 text-warning" style="cursor: pointer">
+            <span>Hi {{ user.firstName | titlecase }}</span>
+          </a>
+          <div class="btn btn-secondary ms-2" (click)="logout()">Logout</div>
+        </div>
+        }
+      </div>
+    </div>
+  </nav>
+</header>

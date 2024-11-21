@@ -1,0 +1,53 @@
+<div class="d-flex justify-content-center">
+  <div class="col-12 col-lg-5">
+    <main class="form-signin mx-auto">
+      <form class="mt-auto" [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="text-center mb-4">
+          <h3 class="mb-3 font-weight-normal">Login</h3>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            name="email"
+            placeholder="email"
+            class="form-control"
+            [class.is-invalid]="submitted && loginForm.get('userName')?.errors"
+            formControlName="userName"
+          />
+          <label for="email">Email</label>
+          @if(submitted && loginForm.get('userName')?.hasError("required")){
+          <span class="text-danger">Email is required</span>
+          }
+        </div>
+        <div class="form-floating mb-4">
+          <input
+            type="password"
+            placeholder="password"
+            class="form-control"
+            formControlName="password"
+            [class.is-invalid]="submitted && loginForm.get('password')?.errors"
+          />
+          <label for="userName">Password</label>
+          @if(submitted && loginForm.get('password')?.hasError("required")){
+          <span class="text-danger">Password is required</span>
+          }
+        </div>
+        @if (errorMessages.length){
+        <div class="form-floatin">
+          <app-validation-messages
+            [errorMessages]="errorMessages"
+          ></app-validation-messages>
+        </div>
+        }
+        <div class="d-grid form-floating mb-4">
+          <button class="btn btn-lg btn-info" type="submit">Login</button>
+        </div>
+        <div class="text-center mb-4">
+          <a class="btn btn-lg btn-link">
+            <h6>Forgot username or password</h6>
+          </a>
+        </div>
+      </form>
+    </main>
+  </div>
+</div>

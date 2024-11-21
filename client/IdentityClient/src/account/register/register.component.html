@@ -1,0 +1,108 @@
+<div class="d-flex justify-content-center">
+  <div class="col-12 col-lg-5">
+    <main class="form-signin mx-auto">
+      <form class="mt-auto" [formGroup]="registerForm" (ngSubmit)="register()">
+        <div class="text-center mb-4">
+          <h3 class="mb-3 font-weight-normal">Register</h3>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            formControlName="firstName"
+            placeholder="firstName"
+            class="form-control"
+            [class.is-invalid]="
+              submitted && registerForm.get('firstName')?.errors
+            "
+          />
+
+          <label for="firstName">First Name</label>
+          @if(submitted && registerForm.get('firstName')?.hasError("required")){
+          <span class="text-danger">First name is required</span>
+          } @if(submitted &&
+          (registerForm.get('firstName')?.hasError("minLength") ||
+          registerForm.get('firstName')?.hasError("maxLength"))){
+          <span class="text-danger"
+            >First name must be at least (2) and maximum (15) characters</span
+          >
+          }
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            formControlName="lastName"
+            placeholder="lastName"
+            class="form-control"
+            [class.is-invalid]="
+              submitted && registerForm.get('lastName')?.errors
+            "
+          />
+          <label for="lastName">Last Name</label>
+          @if(submitted && registerForm.get('lastName')?.hasError("required")){
+          <span class="text-danger">Last name is required</span>
+          } @if(submitted &&
+          (registerForm.get('lastName')?.hasError("minLength") ||
+          registerForm.get('lastName')?.hasError("maxLength"))){
+          <span class="text-danger"
+            >Last name must be at least (2) and maximum (15) characters</span
+          >
+          }
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            formControlName="email"
+            placeholder="email"
+            class="form-control"
+            [class.is-invalid]="submitted && registerForm.get('email')?.errors"
+          />
+          <label for="email">Email</label>
+          @if(submitted && registerForm.get('email')?.hasError("required")){
+          <span class="text-danger">Email is required</span>
+          } @if(submitted && (registerForm.get('email')?.hasError("minLength")
+          || registerForm.get('email')?.hasError("maxLength"))){
+          <span class="text-danger"
+            >email must be at least (2) and maximum (15) charactersr</span
+          >
+          }
+        </div>
+        <div class="form-floating mb-4">
+          <input
+            type="password"
+            formControlName="password"
+            placeholder="password"
+            class="form-control"
+            [class.is-invalid]="
+              submitted && registerForm.get('password')?.errors
+            "
+          />
+          <label for="userName">Password</label>
+          @if(submitted && registerForm.get('password')?.hasError("required")){
+          <span class="text-danger">Password name is required</span>
+          } @if(submitted &&
+          (registerForm.get('password')?.hasError("minLength") ||
+          registerForm.get('password')?.hasError("maxLength"))){
+          <span class="text-danger"
+            >Password must be at least (2) and maximum (15) characters</span
+          >
+          }
+        </div>
+        @if (errorMessages.length){
+        <div class="form-floatin">
+          <app-validation-messages
+            [errorMessages]="errorMessages"
+          ></app-validation-messages>
+        </div>
+        }
+        <div class="d-grid form-floating mb-4">
+          <button class="btn btn-lg btn-info" type="submit">Register</button>
+        </div>
+        <div class="text-center mb-4">
+          <a class="btn btn-lg btn-link">
+            <h6>Forgot username or password</h6>
+          </a>
+        </div>
+      </form>
+    </main>
+  </div>
+</div>
